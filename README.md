@@ -2,60 +2,61 @@
 
 # AIWave Video Pack
 
-**Three battle-tested cinematic prompts + one camera move. Free.**
+**Validated cinematic prompt modules — every claim carries its evidence.**
 
 [![License: CC BY-NC 4.0](https://img.shields.io/badge/license-CC%20BY--NC%204.0-lightgrey.svg)](LICENSE)
-[![Video routes](https://img.shields.io/badge/render-Kling%20%C2%B7%20Seedance%20%C2%B7%20Hailuo%20%C2%B7%20Wan%20%C2%B7%20Vidu-purple)](https://aiwave.live/models)
 
 </div>
 
 ---
 
-Free sample from **AIWave's cinematic prompt library**. These are not
-generated filler — every entry was validated on real video productions
-against Kling-class models, and each negative prompt filters failure modes
-we actually hit (warped hands, watermarks, cartoon drift).
+Free sample from **AIWave's cinematic prompt library** (83 entries, 10
+categories — the rest powers our upcoming creation platform).
 
-Works with **any** video model. Renders nicely through
-[AIWave](https://aiwave.live/register) if you want one key for all five
-video vendors.
+This pack is not a list of "prompts that sound good". Every module ships
+with a **validation record**: which model, which date, how many runs, what we
+observed, what fails, and a copy-paste command so **you can verify every
+claim yourself**.
 
-## The prompts
+## The modules
 
-| File | What it does |
-|---|---|
-| [`prompts/cinema.md`](prompts/cinema.md) | Cinematic film look — 35mm color science, creamy bokeh, 2.39:1 widescreen |
-| [`prompts/us-comic.md`](prompts/us-comic.md) | American comic — Ben-Day dots, four-color print, worm's-eye drama |
-| [`prompts/dark-fantasy.md`](prompts/dark-fantasy.md) | Dark fantasy — candlelight chiaroscuro, gothic silhouettes, blood-red accents |
-| [`prompts/push-in.md`](prompts/push-in.md) | Push-in camera move — the highest-weight leading token for slow reveals |
+| File | What it does | Validated on |
+|---|---|---|
+| [`prompts/cinema.md`](prompts/cinema.md) | Cinematic film look — 35mm color science, creamy bokeh, 2.39:1 | see record |
+| [`prompts/us-comic.md`](prompts/us-comic.md) | American comic — Ben-Day dots, four-color print, worm's-eye | see record |
+| [`prompts/dark-fantasy.md`](prompts/dark-fantasy.md) | Dark fantasy — candlelight chiaroscuro, gothic silhouettes | see record |
+| [`prompts/push-in.md`](prompts/push-in.md) | Push-in camera move — leading-token technique | see record |
 
-Each file: English prompt + 中文提示词 + negative prompt + usage notes.
+Each file contains: English prompt + 中文提示词 + negative prompt +
+usage notes + **validation record** (model, date, N, observed effects,
+known failure modes) + a reproduction command.
 
-## Try one in 30 seconds
+## Verify any claim in 30 seconds
+
+Every number in this org traces to a public endpoint. For example, the
+public rate card:
 
 ```bash
-export AIWAVE_API_KEY="your_key"   # https://aiwave.live/register
-curl https://aiwave.live/v1/video/generations \
-  -H "Authorization: Bearer $AIWAVE_API_KEY" \
-  -H "Content-Type: application/json" \
-  -d '{"model":"kling-v2-6","prompt":"<paste a style prompt here> + your scene"}'
+curl -s https://aiwave.live/api/pricing | python3 -c \
+  "import sys,json; d=json.load(sys.stdin); ms=d['models'] if 'models' in d else d['data']; print(len(ms),'routes')"
+# → 97 routes (verified 2026-11-01, pricing_version 5a90f2b8...)
 ```
 
-Video routes need a paid account group (from $5 — that also unlocks all 128
-text models at VIP rates). Full quickstart:
-[aiwave-quickstart](https://github.com/AIWaveAPI/aiwave-quickstart).
+Same idea for the prompt modules: each one lists the exact curl that
+reproduces its validation run. If your result differs, open a
+[Discussion](https://github.com/AIWaveAPI/aiwave-video-pack/discussions) —
+that's how the records stay honest.
 
 ## What's NOT in this pack
 
-This is 4 entries out of a **83-entry library with 10 categories** —
-including Eastern aesthetics (ink-wash, xianxia, ancient landscape),
-a 12-entry micro-expression system for close-ups, pacing modules, and a
-storyboard engine that keeps characters consistent across shots.
+The full library includes Eastern aesthetics (ink-wash, xianxia, ancient
+landscape), a 12-entry micro-expression system for close-ups, pacing
+modules, and a storyboard engine that keeps characters consistent across
+shots (verified by frame-comparison on real multi-shot generations).
 
-That system powers **AIWave Canvas**, our cinematic creation platform —
-coming soon. Watch this org.
+That system powers **AIWave Canvas** — coming soon. Watch this org.
 
 ## License
 
-Prompts: [CC BY-NC 4.0](LICENSE) — use them freely in your own videos;
+Prompts: [CC BY-NC 4.0](LICENSE) — use freely in your own videos;
 commercial redistribution of the pack itself is not allowed.

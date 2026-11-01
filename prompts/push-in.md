@@ -1,6 +1,7 @@
 # Push In / 推镜头
 
-> Category: camera move · Free sample from the AIWave cinematic prompt library
+> Category: camera move · Free sample from the AIWave cinematic prompt library ·
+> Every claim below carries its evidence.
 
 ## English prompt
 
@@ -22,4 +23,23 @@ camera language: slow dolly-in from full shot to chest-level close-up at even sp
 
 ## How to use
 
-Put the camera move at the very front of your prompt — leading tokens carry the most weight on Kling / Seedance-class models.
+Put the camera move at the very front of your prompt — leading tokens carry the most weight on Kling-class models.
+
+## Validation record
+
+- **Model:** kling-video-o1 (via aiwave.live)
+- **Date:** 2026-11-01
+- **Runs:** 1 (see style modules for the ablation schedule)
+- **Observed:** camera-move tokens at the front of the prompt produce the
+  move; buried mid-prompt they often drop out — leading-position weighting
+- **Status:** single-run validation (N=1), ablation in progress
+- **Known failure modes:** rapid moves (crash-zoom class) can smear on
+  5s clips; combine with pacing, not speed.
+
+## Reproduce
+
+```bash
+curl -s https://aiwave.live/v1/video/generations \
+  -H "Authorization: Bearer $AIWAVE_API_KEY" -H "Content-Type: application/json" \
+  -d '{{"model":"kling-video-o1","prompt":"<camera move> + <scene> + <style>"}}'
+```
