@@ -29,8 +29,8 @@ Append the style prompt to your scene description (style first — leading token
 
 - **Model:** kling-video-o1 (via aiwave.live)
 - **Date:** 2026-11-01
-- **Runs:** 1 (sample clips attached to the org's release; multi-run
-  ablation scheduled — see "Status" below)
+- **Runs:** 1 (internal run; sample clips will be attached to a public
+  release once the ablation matrix completes — see "Status" below)
 - **Observed:** style tokens carried into the render (film color, framing);
   leading-token weighting confirmed — style placed first dominated the look
 - **Status:** single-run validation. We mark this honestly: N=1. The
