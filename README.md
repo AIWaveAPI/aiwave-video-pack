@@ -11,7 +11,7 @@
 ---
 
 Free sample from **AIWave's cinematic prompt library** (83 entries, 10
-categories — the rest powers our upcoming creation platform).
+categories). This pack is the part we chose to publish.
 
 This pack is not a list of "prompts that sound good". Every module ships
 with a **validation record**: which model, which date, how many runs, what we
@@ -54,7 +54,9 @@ landscape), a 12-entry micro-expression system for close-ups, pacing
 modules, and a storyboard engine that keeps characters consistent across
 shots (verified by frame-comparison on real multi-shot generations).
 
-That system powers **AIWave Canvas** — coming soon. Watch this org.
+The rest of the library is not public and we're not announcing anything
+about where it runs. This pack stands on its own — four modules, evidence
+attached, use them today.
 
 ## License
 
