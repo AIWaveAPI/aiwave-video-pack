@@ -4,7 +4,7 @@
 
 ## 你在操作什么
 
-AIWave（https://aiwave.live/）的 AI 视频提示词包：面向 `kling-v3` / `doubao-seedance` / `MiniMax-Hailuo` / `wan3.0-video` 等在售视频模型的提示词工程素材库。读者是视频创作者与集成开发者。
+AIWave（https://aiwave.live/）的 AI 视频提示词包：面向 Kling、Seedance、Hailuo、Wan 等视频模型家族的提示词工程素材库。具体模型 ID 需从实时价卡核对，可用性还需单独验证账户路由。读者是视频创作者与集成开发者。
 
 ## 权威数据源（唯一事实）
 
