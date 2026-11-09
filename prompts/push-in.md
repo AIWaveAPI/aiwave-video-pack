@@ -1,7 +1,7 @@
 # Push In / 推镜头
 
 > Category: camera move · Free sample from the AIWave cinematic prompt library ·
-> Every claim below carries its evidence.
+> Draft example. The author-reported single run has no public output artifact.
 
 ## English prompt
 
@@ -23,23 +23,24 @@ camera language: slow dolly-in from full shot to chest-level close-up at even sp
 
 ## How to use
 
-Put the camera move at the very front of your prompt — leading tokens carry the most weight on Kling-class models.
+Use the English prompt as a starting point for a camera-move request. Whether placing it first changes the output requires repeated controlled comparisons; none are supplied here.
 
-## Validation record
+## Evidence status
 
-- **Model:** kling-video-o1 (via aiwave.live)
+- **Model:** `kling-video-o1` (via aiwave.live)
 - **Date:** 2026-11-01
-- **Runs:** 1 (see style modules for the ablation schedule)
-- **Observed:** camera-move tokens at the front of the prompt produce the
-  move; buried mid-prompt they often drop out — leading-position weighting
-- **Status:** single-run validation (N=1), ablation in progress
-- **Known failure modes:** rapid moves (crash-zoom class) can smear on
-  5s clips; combine with pacing, not speed.
+- **Author-reported runs:** N=1. The original clip, request parameters and task receipt are not included here, so this run cannot be independently checked.
+- **Unverified:** output quality and the claim that earlier prompt position causes a more reliable camera move. No controlled comparison is supplied.
 
 ## Reproduce
 
 ```bash
-curl -s https://aiwave.live/v1/video/generations \
+export AIWAVE_API_KEY="your_key"   # use your own key; check group eligibility and current price first
+curl -sS https://aiwave.live/v1/video/generations \
   -H "Authorization: Bearer $AIWAVE_API_KEY" -H "Content-Type: application/json" \
-  -d '{{"model":"kling-video-o1","prompt":"<camera move> + <scene> + <style>"}}'
+  --data-binary @- <<'JSON'
+{"model":"kling-video-o1","prompt":"camera language: slow dolly-in from full shot to chest-level close-up at even speed, background compressing into bokeh as the emotion builds, reserved for brewing emotion and moments of resolve"}
+JSON
+# Save the returned task ID. Poll GET /v1/video/generations/<task_id> until a terminal state.
+# If submission times out, inspect task status and usage before submitting again; a second POST may create a second paid job.
 ```
