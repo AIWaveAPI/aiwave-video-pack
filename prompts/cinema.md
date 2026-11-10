@@ -1,7 +1,7 @@
 # Cinematic / 电影感
 
 > Category: visual style · Free sample from the AIWave cinematic prompt library ·
-> Every claim below carries its evidence.
+> Draft example. The author-reported single run has no public output artifact.
 
 ## English prompt
 
@@ -23,29 +23,24 @@ cinematic film look, 35mm film color science, shallow depth of field with creamy
 
 ## How to use
 
-Append the style prompt to your scene description (style first — leading tokens carry the most weight). Keep the negative prompt as-is; it filters real production failure modes.
+Use the English prompt as a starting point, then add your scene details. The negative prompt above is optional text guidance; the request below does not send it as a separate API field. Its effect has not been isolated in a controlled comparison.
 
-## Validation record
+## Evidence status
 
-- **Model:** kling-video-o1 (via aiwave.live)
+- **Model:** `kling-video-o1` (via aiwave.live)
 - **Date:** 2026-11-01
-- **Runs:** 1 (internal run; sample clips will be attached to a public
-  release once the ablation matrix completes — see "Status" below)
-- **Observed:** style tokens carried into the render (film color, framing);
-  leading-token weighting confirmed — style placed first dominated the look
-- **Status:** single-run validation. We mark this honestly: N=1. The
-  multi-run ablation matrix (N=3 per style, per model) is in progress and
-  records will be updated in place.
-- **Known failure modes (from the production log these prompts come from):**
-  hands warp on complex gestures; text/logos drift in; faces cartoonize on
-  long shots — the negative prompt below filters exactly these.
+- **Author-reported runs:** N=1. The original clip, request parameters and task receipt are not included here, so this run cannot be independently checked.
+- **Unverified:** output quality, leading-token weighting, and whether the negative prompt prevents specific artifacts. No controlled comparison is supplied.
 
 ## Reproduce
 
 ```bash
-export AIWAVE_API_KEY="your_key"   # https://aiwave.live/register (video needs a paid group, from $5)
-curl -s https://aiwave.live/v1/video/generations \
+export AIWAVE_API_KEY="your_key"   # use your own key; check group eligibility and current price first
+curl -sS https://aiwave.live/v1/video/generations \
   -H "Authorization: Bearer $AIWAVE_API_KEY" -H "Content-Type: application/json" \
-  -d '{{"model":"kling-video-o1","prompt":"<style prompt above> + your scene"}}'
-# Poll: GET /v1/video/generations/<task_id> every 15s; a single shot takes 5-11 min.
+  --data-binary @- <<'JSON'
+{"model":"kling-video-o1","prompt":"cinematic film look, 35mm film color science, shallow depth of field with creamy bokeh, soft volumetric god rays raking across frame, low-key lighting with lifted shadows, natural skin tones, restrained horizontal lens flare, 2.39:1 widescreen composition with breathing room, subject on thirds, foreground occlusion for depth"}
+JSON
+# Save the returned task ID. Poll GET /v1/video/generations/<task_id> until a terminal state.
+# If submission times out, inspect task status and usage before submitting again; a second POST may create a second paid job.
 ```
